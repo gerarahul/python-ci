@@ -15,13 +15,18 @@ Reference to `pyproject.toml` in this repository: [pyproject.toml](./pyproject.t
 
 Set up a Continuous Integration (CI) workflow by creating a file at `.github/workflows/python-ci.yml`. This will define actions that automatically lint, format, and check your code for security vulnerabilities upon each push or pull request.
 
-Reference to GitHub Actions workflow: [python-ci.yml](./.github/workflows/python-ci.yml)
+```bash
+mkdir .github/workflows # create this dir in your root path of code repository
+cp python-ci.yml .github/workflows # copy this python-ci.yml in this dir
+```
+
+Reference to GitHub Actions workflow: [python-ci.yml](./python-ci.yml)
 
 ### 3. Pre-commit Configuration
 
 For setting up pre-commit hooks in your repository, you will use a `.pre-commit-config.yaml` file. These hooks help to ensure that your code is automatically checked and formatted before each commit.
 
-Reference to pre-commit config: [.pre-commit-config.yaml](./.pre-commit-config-copy.yaml)
+Reference to pre-commit config: [.pre-commit-config.yaml](./.pre-commit-config.yaml)
 
 ## Detailed Tool Descriptions
 

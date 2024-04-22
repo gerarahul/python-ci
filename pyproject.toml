@@ -17,7 +17,7 @@ use_parentheses = true  # Uses parentheses for line continuations in multiline i
 ensure_newline_before_comments = true  # Ensures that there is a newline before comments on imports, which improves readability.
 
 [tool.flake8]
-ignore = "E501, W503, F405"  # A list of error and warning codes to ignore:
+ignore = "E501, W503"  # A list of error and warning codes to ignore:
                              # E501 - line too long (handled by Black's line-length)
                              # W503 - line break before binary operator (conflicts with Black)
                              # F405 - name may be undefined, or defined from star imports
