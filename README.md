@@ -1,53 +1,72 @@
 
 # Python Code Quality and Security Setup
 
-This guide provides instructions on setting up your Python repository to improve code quality and security using various tools integrated via pre-commit hooks.
+This guide outlines how to set up and maintain high standards for code quality and security in your Python codebase using automated tools and workflows.
 
 ## Setup Instructions
 
 ### 1. Pyproject.toml
 
-First, create a `pyproject.toml` file in the root directory of your repository. This file will be used to configure various Python tools. You can find a reference implementation of this file in this repository.
+Start by creating a `pyproject.toml` file in the root of your repository. This configuration file is used by various tools to maintain consistent code style and quality standards across your project.
 
-Reference: [pyproject.toml](link-to-pyproject.toml-in-your-repo)
+Reference to `pyproject.toml` in this repository: [pyproject.toml](./pyproject.toml)
 
-### 2. GitHub Actions Workflow
+### 2. GitHub Actions Workflow (CI/CD)
 
-Create a directory `.github/workflows/` in your repository and add a CI workflow file `ci.yml`. You can copy the workflow file from this repository to set up automated checks that run on GitHub Actions.
+Set up a Continuous Integration (CI) workflow by creating a file at `.github/workflows/python-ci.yml`. This will define actions that automatically lint, format, and check your code for security vulnerabilities upon each push or pull request.
 
-Reference: [ci.yml](link-to-ci.yml-in-your-repo)
+Reference to GitHub Actions workflow: [python-ci.yml](./.github/workflows/python-ci.yml)
 
-## Tool Descriptions
+### 3. Pre-commit Configuration
 
-### Installed Tools
+For setting up pre-commit hooks in your repository, you will use a `.pre-commit-config.yaml` file. These hooks help to ensure that your code is automatically checked and formatted before each commit.
 
-- **isort**: Automatically sorts and organizes Python imports in a consistent manner across your project.
-- **black**: An uncompromising code formatter that adheres to a strict style guide to ensure code consistency.
-- **flake8**: A tool that checks the style and quality of Python code to catch programming errors and potentially confusing or problematic code.
-- **autoflake**: Removes unused imports and unused variables from Python code.
-- **pyproject-autoflake**: A wrapper for autoflake that allows configuration via `pyproject.toml`.
-- **bandit**: A tool that scans Python code for security issues.
-- **pre-commit**: Manages and maintains pre-commit hooks that run tools like linters and formatters before each commit to ensure code quality and style consistency.
+Reference to pre-commit config: [.pre-commit-config.yaml](./.pre-commit-config-copy.yaml)
 
-### Setting Up Pre-commit Hooks
+## Detailed Tool Descriptions
 
-Run the following command in the root path of your repository to install pre-commit hooks:
+### isort
+
+`isort` is a Python utility to sort imports alphabetically and automatically separate them into sections. It makes imports more readable and avoids conflicts.
+
+### black
+
+`black` is a deterministic code formatter that reformats entire files in place. It makes code review faster by producing the smallest diffs possible.
+
+### flake8
+
+`flake8` is a command-line utility for enforcing style consistency across Python projects. It combines PyFlakes, pycodestyle, and Ned Batchelder's McCabe script.
+
+### autoflake
+
+`autoflake` removes unused imports and unused variables from Python code. With the `--in-place` option, it can automatically apply these changes to your files.
+
+### pyproject-autoflake
+
+`pyproject-autoflake` provides autoflake support for `pyproject.toml`, allowing you to define autoflake settings in a centralized project configuration file.
+
+### bandit
+
+`bandit` is a tool designed to find common security issues in Python code. It statically analyzes the code to search for potentially dangerous operations.
+
+### pre-commit
+
+`pre-commit` manages and configures pre-commit hooks that are run prior to each commit to ensure the quality of the code being committed.
+
+## Install tools and hooks in your repo
 
 ```bash
+pip install isort black flake8 autoflake pyproject-autoflake bandit pre-commit
 pre-commit install
 ```
 
-### Running Pre-commit Hooks Without Committing
+## Usage of Pre-commit Without Committing
 
-To run all configured pre-commit hooks on your repository without making a commit:
+To run all pre-commit hooks on your staged files without committing:
 
 ```bash
-pre-commit run --all
+pre-commit run --all-files
 ```
 
-This command is useful for testing or enforcing project-wide code standards even before attempting to commit changes to your version control system.
-
-## Conclusion
-
-Following this setup helps maintain high standards of code quality and security across your Python projects. By integrating these tools into your development process, especially with automated workflows like GitHub Actions, you ensure consistent adherence to best practices.
+This is useful for manually triggering the hooks to clean up your repository or to check your changes before committing them.
 
